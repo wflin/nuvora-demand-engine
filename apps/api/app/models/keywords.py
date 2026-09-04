@@ -22,19 +22,12 @@ from sqlalchemy import (
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from app.core.text import normalize_keyword
+
 from app.db.base import Base, UUIDPrimaryKeyMixin, utcnow
 
 if TYPE_CHECKING:
     from app.models.research import ResearchProject
-
-
-def normalize_keyword(keyword: str) -> str:
-    """Deterministic normalization for dedup/matching.
-
-    Strategy: trim, lowercase, and collapse runs of whitespace to a single
-    space. Intentionally simple; no NLP in this task.
-    """
-    return " ".join(keyword.strip().lower().split())
 
 
 class Keyword(Base, UUIDPrimaryKeyMixin):

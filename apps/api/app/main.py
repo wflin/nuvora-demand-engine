@@ -13,6 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.health import router as health_router
 from app.api.research import router as research_router
 from app.api.research_jobs import router as research_jobs_router
+from app.api.sources_google import router as sources_google_router
 from app.core.settings import settings
 
 logging.basicConfig(level=settings.log_level)
@@ -28,3 +29,4 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(research_router, prefix="/api")
 app.include_router(research_jobs_router, prefix="/api")
+app.include_router(sources_google_router)
