@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Environment and secrets
+.env
+.env.local
+
+# Node / Next.js (not used in P0-002; reserved for future UI phases)
+node_modules/
+.next/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

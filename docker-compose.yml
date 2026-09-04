@@ -1,0 +1,25 @@
+# Local development infrastructure for Nuvora Demand Engine.
+name: nuvora-demand-engine
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-demand_engine}
+      POSTGRES_USER: ${POSTGRES_USER:-demand_engine}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-demand_engine_dev}
+    ports:
+      # Host port 5433 avoids clashing with another local PostgreSQL on 5432.
+      - "5433:5432"
+    volumes:
+      - demand_engine_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  demand_engine_data:

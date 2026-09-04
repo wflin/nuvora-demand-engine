@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nuvora-demand-engine"
+version = "0.1.0"
+description = "Nuvora Demand Engine - backend foundation (FastAPI + PostgreSQL)"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi==0.141.1",
+    "uvicorn==0.52.4",
+    "sqlalchemy==2.0.52",
+    "psycopg[binary]==3.3.4",
+    "alembic==1.19.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx==0.28.1",
+    "pytest==9.1.1",
+]
+
+[tool.setuptools]
+packages = []
+
+[tool.pytest.ini_options]
+testpaths = ["apps/api/tests"]
+pythonpath = ["apps/api"]

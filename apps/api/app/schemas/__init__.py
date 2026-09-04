@@ -1,0 +1,1 @@
+"""API schemas for the ResearchProject endpoints."""
